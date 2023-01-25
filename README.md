@@ -24,4 +24,51 @@ Now we can create the lmdb encoded files which will then be used for training, v
                     --gtFile /import/c4dm-05/elona/primus_experiments/no-encoding/data/test.txt
                     --outputPath /import/c4dm-05/elona/primus_experiments/no-encoding/data/test
 
+The structure that is expected by create_lmdb_dataset.py is 
 
+test/word_1.png Tiredness
+test/word_2.png kills
+test/word_3.png A
+...
+
+
+Now all data is ready we can start training from scratch, fine-tuning or just testing with the following commads:
+    CUDA_VISIBLE_DEVICES=0 python3 train.py \
+        --train_data data_lmdb_release/training --valid_data data_lmdb_release/validation \
+        --select_data MJ-ST --batch_ratio 0.5-0.5 \
+        --Transformation None --FeatureExtraction VGG --SequenceModeling BiLSTM --Prediction CTC
+
+or to test:
+
+    CUDA_VISIBLE_DEVICES=0 python3 test.py \
+        --eval_data data_lmdb_release/evaluation --benchmark_all_eval \
+        --Transformation None --FeatureExtraction VGG --SequenceModeling BiLSTM --Prediction CTC \
+        --saved_model saved_models/None-VGG-BiLSTM-CTC-Seed1111/best_accuracy.pth
+
+or for a different model architecture:
+
+    CUDA_VISIBLE_DEVICES=0 python3 train.py \
+        --train_data data_lmdb_release/training --valid_data data_lmdb_release/validation \
+        --select_data MJ-ST --batch_ratio 0.5-0.5 \
+        --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn
+
+testing:
+
+    CUDA_VISIBLE_DEVICES=0 python3 test.py \
+            --eval_data data_lmdb_release/evaluation --benchmark_all_eval \
+            --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn \
+            --saved_model saved_models/TPS-ResNet-BiLSTM-Attn-Seed1111/best_accuracy.pth
+
+
+--train_data: folder path to training lmdb dataset.
+--valid_data: folder path to validation lmdb dataset.
+--eval_data: folder path to evaluation (with test.py) lmdb dataset.
+--select_data: select training data, choose train
+--batch_ratio: assign ratio for each selected data in the batch. default is 0.5
+--data_filtering_off: skip data filtering when creating LmdbDataset.
+--Transformation: select Transformation module [None | TPS].
+--FeatureExtraction: select FeatureExtraction module [VGG | RCNN | ResNet].
+--SequenceModeling: select SequenceModeling module [None | BiLSTM].
+--Prediction: select Prediction module [CTC | Attn].
+--saved_model: assign saved model to evaluation.
+--benchmark_all_eval: evaluate with other datasets
