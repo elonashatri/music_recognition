@@ -2,11 +2,11 @@ We start by preparing the Ground truth files for train, valid and test. Dependin
 
 /import/c4dm-05/elona/Corpus/
 000051650-1_1_1
-    --------/000051650-1_1_1_distorted.jpg
-    --------/000051650-1_1_1/000051650-1_1_1.agnostic
-    --------/000051650-1_1_1.mei
-    --------/000051650-1_1_1.png
-    --------/000051650-1_1_1.semantic
+    --------/000051650-1_1_1_distorted.jpg \
+    --------/000051650-1_1_1/000051650-1_1_1.agnostic \
+    --------/000051650-1_1_1.mei \
+    --------/000051650-1_1_1.png \ 
+    --------/000051650-1_1_1.semantic \
 ...
 
 The images that I want to use are the .png and the GT files are .agnostic
