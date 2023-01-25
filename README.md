@@ -33,6 +33,7 @@ test/word_3.png A
 
 
 Now all data is ready we can start training from scratch, fine-tuning or just testing with the following commads:
+
     CUDA_VISIBLE_DEVICES=0 python3 train.py \
         --train_data data_lmdb_release/training --valid_data data_lmdb_release/validation \
         --select_data MJ-ST --batch_ratio 0.5-0.5 \
