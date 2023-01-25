@@ -72,3 +72,8 @@ testing:
 --Prediction: select Prediction module [CTC | Attn].
 --saved_model: assign saved model to evaluation.
 --benchmark_all_eval: evaluate with other datasets
+
+
+
+
+Code is heavily based on https://github.com/clovaai/deep-text-recognition-benchmark
