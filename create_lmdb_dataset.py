@@ -7,6 +7,24 @@ import cv2
 import pandas as pd
 import numpy as np
 
+def checkImageIsValid(imageBin):
+    if imageBin is None:
+        return False
+    imageBuf = np.frombuffer(imageBin, dtype=np.uint8)
+    img = cv2.imdecode(imageBuf, cv2.IMREAD_GRAYSCALE)
+    imgH, imgW = img.shape[0], img.shape[1]
+    if imgH * imgW == 0:
+        return False
+    return True
+
+
+# switched to str(k).encode(), str(v).encode() so it doesn't read it as list but bytelike
+
+def writeCache(env, cache):
+    with env.begin(write=True) as txn:
+        for k, v in cache.items():
+            txn.put(k, v)
+
 
 def createDataset(inputPath, gtFile, outputPath, checkValid=True):
     """
@@ -59,7 +77,7 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
         # print(labelKey)
         cache[imageKey] = imageBin
         cache[labelKey] = label.encode()
-        print(cache)
+        # print(cache)
 
 
 
@@ -86,7 +104,7 @@ if __name__ == '__main__':
 3. outputPath: the path where the lmdb file will be stored"""
 
 """Some of my path examples
---inputPath /import/c4dm-05/elona/Corpus
---gtFile /import/c4dm-05/elona/primus_experiments/no-encoding/data/test.txt
---outputPath /import/c4dm-05/elona/primus_experiments/no-encoding/data/test
+python create_lmdb_dataset.py --inputPath /import/c4dm-05/elona/Corpus \
+--gtFile /homes/es314/music_recognition/data/intial_data/train.txt \
+--outputPath /homes/es314/music_recognition/data/lmdb_data/train
 """

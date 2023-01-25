@@ -1,11 +1,7 @@
 """Based on the script from https://github.com/antoniorv6/transformers_omr """
-import json
 import cv2
 import numpy as np
 import os
-import sys
-import tqdm
-import glob
 
 def loadPrimus(path, encoding, output_file):
     X=[]
@@ -48,5 +44,5 @@ def loadPrimus(path, encoding, output_file):
 
 
 
-loadPrimus('/import/c4dm-05/elona/Corpus', 'agnostic', '/homes/es314/deep-text-recognition-benchmark/new_primus_clean/primus_whole_GT.txt')
+loadPrimus('/import/c4dm-05/elona/Corpus', 'agnostic', './data/intial_data_GT.txt')
 

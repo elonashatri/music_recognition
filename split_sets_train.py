@@ -1,10 +1,10 @@
 ## allocating train, test and validate datasets
 import random 
 
-fin = open('/import/c4dm-05/elona/primus_experiments/new_primus_clean/primus_whole_GT.txt', 'rb') 
-f75out = open("/import/c4dm-05/elona/primus_experiments/no-encoding/data/train.txt", 'wb') 
-f125aout = open("/import/c4dm-05/elona/primus_experiments/no-encoding/data/test.txt", 'wb')
-f125bout = open("/import/c4dm-05/elona/primus_experiments/no-encoding/data/valid.txt", 'wb')
+fin = open('/homes/es314/music_recognition/data/intial_data_GT.txt', 'rb') 
+f75out = open("/homes/es314/music_recognition/data/lmdb_data/train.txt", 'wb') 
+f125aout = open("/homes/es314/music_recognition/data/lmdb_data/test.txt", 'wb')
+f125bout = open("/homes/es314/music_recognition/data/lmdb_data/valid.txt", 'wb')
 
 # change values for the splits for train, valdiation and test GT files
 for line in fin: 
