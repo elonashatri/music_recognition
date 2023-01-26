@@ -61,20 +61,24 @@ testing:
             --saved_model saved_models/TPS-ResNet-BiLSTM-Attn-Seed1111/best_accuracy.pth
 
 
---train_data: folder path to training lmdb dataset.
---valid_data: folder path to validation lmdb dataset.
---eval_data: folder path to evaluation (with test.py) lmdb dataset.
---select_data: select training data, choose train
---batch_ratio: assign ratio for each selected data in the batch. default is 0.5
---data_filtering_off: skip data filtering when creating LmdbDataset.
---Transformation: select Transformation module [None | TPS].
---FeatureExtraction: select FeatureExtraction module [VGG | RCNN | ResNet].
---SequenceModeling: select SequenceModeling module [None | BiLSTM].
---Prediction: select Prediction module [CTC | Attn].
---saved_model: assign saved model to evaluation.
---benchmark_all_eval: evaluate with other datasets
+Arguments:
+
+        --train_data: folder path to training lmdb dataset.
+        --valid_data: folder path to validation lmdb dataset.
+        --eval_data: folder path to evaluation (with test.py) lmdb dataset.
+        --select_data: select training data, choose train
+        --batch_ratio: assign ratio for each selected data in the batch. default is 0.5
+        --data_filtering_off: skip data filtering when creating LmdbDataset.
+        --Transformation: select Transformation module [None | TPS].
+        --FeatureExtraction: select FeatureExtraction module [VGG | RCNN | ResNet].
+        --SequenceModeling: select SequenceModeling module [None | BiLSTM].
+        --Prediction: select Prediction module [CTC | Attn].
+        --saved_model: assign saved model to evaluation.
+        --benchmark_all_eval: evaluate with other datasets
 
 
+If problems with GCC export it from the right path:
 
+    export LD_PRELOAD=/homes/es314/miniconda3/envs/bttr/lib/libstdc++.so.6.0.29 
 
 Code is heavily based on https://github.com/clovaai/deep-text-recognition-benchmark
