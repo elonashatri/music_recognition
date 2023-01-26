@@ -34,32 +34,43 @@ test/word_3.png A
 
 Now all data is ready we can start training from scratch, fine-tuning or just testing with the following commads:
 
-    CUDA_VISIBLE_DEVICES=0 python3 train.py \
-        --train_data data_lmdb_release/training --valid_data data_lmdb_release/validation \
-        --select_data MJ-ST --batch_ratio 0.5-0.5 \
+    CUDA_VISIBLE_DEVICES=0 python3 /data/home/acw507/music_recognition/train.py \
+        --train_data /data/home/acw507/music_recognition/data/train --valid_data /data/home/acw507/music_recognition/data/valid \
+        --select_data train --batch_ratio 0.5 \
         --Transformation None --FeatureExtraction VGG --SequenceModeling BiLSTM --Prediction CTC
 
 or to test:
 
-    CUDA_VISIBLE_DEVICES=0 python3 test.py \
-        --eval_data data_lmdb_release/evaluation --benchmark_all_eval \
+    CUDA_VISIBLE_DEVICES=0 python3 /data/home/acw507/music_recognition/train.py \
+        --train_data /data/home/acw507/music_recognition/data/train --valid_data /data/home/acw507/music_recognition/data/valid \
         --Transformation None --FeatureExtraction VGG --SequenceModeling BiLSTM --Prediction CTC \
         --saved_model saved_models/None-VGG-BiLSTM-CTC-Seed1111/best_accuracy.pth
 
 or for a different model architecture:
 
-    CUDA_VISIBLE_DEVICES=0 python3 train.py \
-        --train_data data_lmdb_release/training --valid_data data_lmdb_release/validation \
+    CUDA_VISIBLE_DEVICES=0 python3 /data/home/acw507/music_recognition/train.py \
+        --train_data /data/home/acw507/music_recognition/data/train --valid_data /data/home/acw507/music_recognition/data/valid \
         --select_data MJ-ST --batch_ratio 0.5-0.5 \
         --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn
 
 testing:
 
-    CUDA_VISIBLE_DEVICES=0 python3 test.py \
-            --eval_data data_lmdb_release/evaluation --benchmark_all_eval \
-            --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn \
-            --saved_model saved_models/TPS-ResNet-BiLSTM-Attn-Seed1111/best_accuracy.pth
+    CUDA_VISIBLE_DEVICES=0 python3 /data/home/acw507/music_recognition/train.py \
+        --train_data /data/home/acw507/music_recognition/data/train --valid_data /data/home/acw507/music_recognition/data/valid \
+        --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn \
+        --saved_model saved_models/TPS-ResNet-BiLSTM-Attn-Seed1111/best_accuracy.pth
 
+
+export LD_PRELOAD=/data/home/acw507/.conda/envs/pytorchenv/lib/libstdc++.so.6.0.29
+
+<!-- # training testing on a tiny set 
+    CUDA_VISIBLE_DEVICES=0 python3 /data/home/acw507/music_recognition/train.py \
+        --train_data /data/home/acw507/music_recognition/data/tiny_dataset/train \
+        --valid_data /data/home/acw507/music_recognition/data/tiny_dataset/valid \
+        --select_data train --batch_ratio 0.5 \
+        --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn
+
+/data/home/acw507/music_recognition/data/tiny_dataset/train -->
 
 Arguments:
 

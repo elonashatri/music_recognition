@@ -44,5 +44,5 @@ def loadPrimus(path, encoding, output_file):
 
 
 
-loadPrimus('/import/c4dm-05/elona/Corpus', 'agnostic', './data/intial_data_GT.txt')
+loadPrimus('/data/scratch/acw507/Corpus/', 'agnostic', '/data/home/acw507/music_recognition/data/GT.txt')
 

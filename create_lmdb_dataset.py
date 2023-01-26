@@ -104,7 +104,7 @@ if __name__ == '__main__':
 3. outputPath: the path where the lmdb file will be stored"""
 
 """Some of my path examples
-python create_lmdb_dataset.py --inputPath /import/c4dm-05/elona/Corpus \
---gtFile /homes/es314/music_recognition/data/intial_data/train.txt \
---outputPath /homes/es314/music_recognition/data/lmdb_data/train
+python create_lmdb_dataset.py --inputPath /data/scratch/acw507/Corpus \
+    --gtFile /data/home/acw507/music_recognition/data/tiny_dataset/valid.txt \
+    --outputPath /data/home/acw507/music_recognition/data/tiny_dataset/valid
 """
