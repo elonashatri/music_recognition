@@ -50,7 +50,7 @@ or for a different model architecture:
 
     CUDA_VISIBLE_DEVICES=0 python3 /data/home/acw507/music_recognition/train.py \
         --train_data /data/home/acw507/music_recognition/data/train --valid_data /data/home/acw507/music_recognition/data/valid \
-        --select_data MJ-ST --batch_ratio 0.5-0.5 \
+        --select_data train --batch_ratio 0.5 \
         --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn
 
 testing:
