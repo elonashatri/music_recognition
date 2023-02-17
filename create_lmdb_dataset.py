@@ -109,6 +109,6 @@ if __name__ == '__main__':
 
 """Some of my path examples
 python create_lmdb_dataset.py --inputPath /data/scratch/acw507/Corpus \
-    --gtFile /data/home/acw507/music_recognition/data/only_position/test.txt \
-    --outputPath /data/home/acw507/music_recognition/data/only_position/test
+    --gtFile ./data/only_position/test.txt \
+    --outputPath ./data/only_position/test
 """

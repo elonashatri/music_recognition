@@ -14,7 +14,7 @@ def get_words(file_path):
         
     # Split the contents into words
     words = contents.split()
-    with open('/data/home/acw507/music_recognition/data/only_position/only_position_GT.txt', 'w') as outfile:
+    with open('./data/only_position/only_position_GT.txt', 'w') as outfile:
         for word in words:
             if '/' in word:
                 word = word.replace('/', '')
@@ -27,4 +27,4 @@ def get_words(file_path):
 
     return words
 
-words = get_words('/data/home/acw507/music_recognition/data/GT.txt')
+words = get_words('./data/GT.txt')
