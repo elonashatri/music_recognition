@@ -1,10 +1,10 @@
 ## allocating train, test and validate datasets
 import random 
 
-fin = open('/data/home/acw507/music_recognition/data/tiny_dataset/testing_GT_encoded.txt', 'rb') 
-f75out = open("/data/home/acw507/music_recognition/data/tiny_dataset/train.txt", 'wb') 
-f125aout = open("/data/home/acw507/music_recognition/data/tiny_dataset/test.txt", 'wb')
-f125bout = open("/data/home/acw507/music_recognition/data/tiny_dataset/valid.txt", 'wb')
+fin = open('/data/home/acw507/music_recognition/data/only_position/only_position_GT.txt', 'rb') 
+f75out = open("/data/home/acw507/music_recognition/data/only_position/train.txt", 'wb') 
+f125aout = open("/data/home/acw507/music_recognition/data/only_position/test.txt", 'wb')
+f125bout = open("/data/home/acw507/music_recognition/data/only_position/valid.txt", 'wb')
 
 # change values for the splits for train, valdiation and test GT files
 for line in fin: 

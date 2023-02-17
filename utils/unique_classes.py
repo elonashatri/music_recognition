@@ -16,7 +16,7 @@ def get_unique_classes(file_path):
     # unique_words = [word for word in unique_words if not word.isnumeric()]
     unique_classes = sorted(unique_classes)
     # Write the unique words to a new .txt file
-    with open('/data/home/acw507/music_recognition/data/unqiue_classes.txt', 'w') as outfile:
+    with open('/data/home/acw507/music_recognition/data/only_position/unique_classes.txt', 'w') as outfile:
         for word in unique_classes:
             # remove the last three characters of the class
             # word = word[:-3]
@@ -24,4 +24,4 @@ def get_unique_classes(file_path):
     return unique_classes
 
 
-unique_classes = get_unique_classes('/data/home/acw507/music_recognition/data/GT.txt')
+unique_classes = get_unique_classes('/data/home/acw507/music_recognition/data/only_position/only_position_GT.txt')

@@ -12,6 +12,7 @@
 *.zip
 *.eps
 *.pdf
+*sh*
 
 ### Linux ###
 *~

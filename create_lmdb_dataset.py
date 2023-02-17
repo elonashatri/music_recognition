@@ -18,13 +18,10 @@ def checkImageIsValid(imageBin):
     return True
 
 
-# switched to str(k).encode(), str(v).encode() so it doesn't read it as list but bytelike
-
 def writeCache(env, cache):
     with env.begin(write=True) as txn:
         for k, v in cache.items():
             txn.put(k, v)
-
 
 def createDataset(inputPath, gtFile, outputPath, checkValid=True):
     """
@@ -104,7 +101,14 @@ if __name__ == '__main__':
 3. outputPath: the path where the lmdb file will be stored"""
 
 """Some of my path examples
+--inputPath /import/c4dm-05/elona/Corpus
+--gtFile /import/c4dm-05/elona/primus_experiments/no-encoding/data/test.txt
+--outputPath /import/c4dm-05/elona/primus_experiments/no-encoding/data/test
+"""
+
+
+"""Some of my path examples
 python create_lmdb_dataset.py --inputPath /data/scratch/acw507/Corpus \
-    --gtFile /data/home/acw507/music_recognition/data/tiny_dataset/valid.txt \
-    --outputPath /data/home/acw507/music_recognition/data/tiny_dataset/valid
+    --gtFile /data/home/acw507/music_recognition/data/only_position/test.txt \
+    --outputPath /data/home/acw507/music_recognition/data/only_position/test
 """
