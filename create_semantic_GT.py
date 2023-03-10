@@ -44,5 +44,5 @@ def loadPrimus(path, encoding, output_file):
 
 
 
-loadPrimus('/data/scratch/acw507/Corpus/', 'semantic', '/data/home/acw507/music_recognition/data/GT_semantic.txt')
+loadPrimus('/data/scratch/acw507/Corpus/', 'semantic', '/data/home/acw507/music_recognition/data/semantic/GT_semantic.txt')
 
