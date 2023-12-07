@@ -6,6 +6,32 @@ import lmdb
 import cv2
 import pandas as pd
 import numpy as np
+import random
+
+def split_gt_file(gtFile, train_ratio=0.7, valid_ratio=0.2):
+    with open(gtFile, 'r', encoding='utf-8') as data:
+        datalist = data.readlines()
+
+    random.shuffle(datalist)
+
+    n_train = int(len(datalist) * train_ratio)
+    n_valid = int(len(datalist) * valid_ratio)
+
+    train_data = datalist[:n_train]
+    valid_data = datalist[n_train:n_train + n_valid]
+    test_data = datalist[n_train + n_valid:]
+
+    with open("train.txt", "w", encoding="utf-8") as train_file:
+        train_file.writelines(train_data)
+
+    with open("valid.txt", "w", encoding="utf-8") as valid_file:
+        valid_file.writelines(valid_data)
+
+    with open("test.txt", "w", encoding="utf-8") as test_file:
+        test_file.writelines(test_data)
+
+    return "train.txt", "valid.txt", "test.txt"
+
 
 def checkImageIsValid(imageBin):
     if imageBin is None:
@@ -91,8 +117,8 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
 
 
 
-if __name__ == '__main__':
-    fire.Fire(createDataset)
+# if __name__ == '__main__':
+#     fire.Fire(createDataset)
 
 
 """Running it you need three different arguments:
@@ -107,8 +133,17 @@ if __name__ == '__main__':
 """
 
 
-"""Some of my path examples
-python create_lmdb_dataset.py --inputPath /data/scratch/acw507/Corpus \
-    --gtFile ./data/only_position/test.txt \
-    --outputPath ./data/only_position/test
-"""
+if __name__ == '__main__':
+    gtFile = "/data/home/acw507/music_recognition/data/original_data/GT.txt"
+    inputPath = "/data/home/acw507/Corpus"
+    outputPath = "/data/home/acw507/music_recognition/data/original_data"
+
+    train_gtFile, valid_gtFile, test_gtFile = split_gt_file(gtFile)
+
+    createDataset(inputPath, train_gtFile, os.path.join(outputPath, "train"))
+    createDataset(inputPath, valid_gtFile, os.path.join(outputPath, "valid"))
+    createDataset(inputPath, test_gtFile, os.path.join(outputPath, "test"))
+
+    os.remove(train_gtFile)
+    os.remove(valid_gtFile)
+    os.remove(test_gtFile)

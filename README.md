@@ -1,3 +1,6 @@
+Module load anaconda3
+conda activate /data/home/acw507/.conda/envs/pytorchenv
+
 We start by preparing the Ground truth files for train, valid and test. Depending on how your grountruth labels are saved different ways to grab it are needed. In my case I have the following structure for my files
 
     /import/c4dm-05/elona/Corpus/000051650-1_1_1 \
